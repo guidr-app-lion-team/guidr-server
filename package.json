@@ -1,0 +1,32 @@
+{
+  "name": "guidr-server",
+  "version": "1.0.0",
+  "description": "Back End for Guidr App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guidr-app-lion-team/guidr-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guidr-app-lion-team/guidr-server/issues"
+  },
+  "homepage": "https://github.com/guidr-app-lion-team/guidr-server#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "knex": "^0.16.3",
+    "morgan": "^1.9.1",
+    "sqlite3": "^4.0.6"
+  }
+}
