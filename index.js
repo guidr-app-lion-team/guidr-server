@@ -1,3 +1,5 @@
 const server = require('./server');
 
-server.listen(5000, () => console.log('=== server on port -->5k<-- ===')); 
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => console.log('=== server on port -->Heroku<-- ===')); 
