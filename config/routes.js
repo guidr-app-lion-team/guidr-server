@@ -61,7 +61,7 @@ function login(req, res) {
         // create the token
         const token = generateToken(user);
 
-        res.status(200).json({ message: `welcome ${creds.username}`, token });
+        res.status(200).json({ username: `${creds.username}`, token });
       } else {
         res.status(401).json({ you: 'shall not pass!!' });
       }
