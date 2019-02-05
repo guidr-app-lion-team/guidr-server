@@ -6,6 +6,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('users').insert([
         {
+          id: 1,
           username: 'Iron Man',
           password: 'pass',
           name: 'Tony Stark',
@@ -15,6 +16,7 @@ exports.seed = function(knex, Promise) {
           professional: false,
         },
         {
+          id: 2,
           username: 'Black Panther',
           password: 'pass',
           name: '',
@@ -24,6 +26,7 @@ exports.seed = function(knex, Promise) {
           professional: false,
         },
         {
+          id: 3,
           username: 'Wolverine',
           password: 'pass',
           name: 'Logan',
@@ -33,6 +36,7 @@ exports.seed = function(knex, Promise) {
           professional: false,
         },
         {
+          id: 4,
           username: 'Batman',
           password: 'pass',
           name: 'Bruce Wayne',
@@ -42,6 +46,7 @@ exports.seed = function(knex, Promise) {
           professional: false,
         },
         {
+          id: 5,
           username: 'Superman',
           password: 'pass',
           name: 'Clark Kent',
@@ -51,6 +56,7 @@ exports.seed = function(knex, Promise) {
           professional: false,
         },
         {
+          id: 6,
           username: 'Aquaman',
           password: 'pass',
           name: 'Arthur Curry',
