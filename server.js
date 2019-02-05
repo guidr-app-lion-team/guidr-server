@@ -3,12 +3,14 @@ const express = require('express');
 const configureMiddleware = require('./config/middleware');
 const dbUser = require('./helpers/userModel');
 const dbAdventures = require('./helpers/adventureModel');
+const configureRoutes = require('./config/routes');
 
 
 const server = express();
 
 //middleware 
 configureMiddleware(server);
+configureRoutes(server);
 
 // User routes
 server.get('/', (req, res) => {
