@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
     tbl.string('duration', 128);
     tbl.text('description');
     tbl.boolean('professional').defaultTo(false);
-    tbl.string('date', 128);    
+    tbl.string('date', 128);
   });
 };
 

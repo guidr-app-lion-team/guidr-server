@@ -21,7 +21,7 @@ exports.up = function(knex, Promise) {
     tbl
       .text('bio');
     tbl
-      .boolean('professional').defaultTo(false); 
+      .boolean('professional').defaultTo(false);
   });
 };
 
