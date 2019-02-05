@@ -3,6 +3,7 @@ const axios = require('axios');
 const bcrypt = require('bcryptjs');
 const db = require('./dbConfig');
 const jwt = require('jsonwebtoken');
+const hashPassword = require('../helpers/hashPassword');
 
 
 
@@ -11,7 +12,7 @@ const { authenticate } = require('../auth/authenticate');
 module.exports = server => {
   server.post('/register', register);
   server.post('/login', login);
-  server.get('/user', authenticate, getGuidr);  
+  server.get('/adventures', authenticate, getGuidr);  
 };
 
 
@@ -21,7 +22,7 @@ function register(req, res) {
   // implement user registration
   const userInfo = req.body;
 
-  const hash = bcrypt.hashSync(userInfo.password, 14);
+  const hash = hashPassword(userInfo.password);
 
   userInfo.password = hash;
 
@@ -60,7 +61,7 @@ function login(req, res) {
         // create the token
         const token = generateToken(user);
 
-        res.status(200).json({ message: `welcome ${user.name}`, token });
+        res.status(200).json({ message: `welcome ${creds.username}`, token });
       } else {
         res.status(401).json({ you: 'shall not pass!!' });
       }
@@ -74,7 +75,7 @@ function getGuidr(req, res) {
   };
 
   axios
-    .get('https://guidr2.herokuapp.com/user', requestOptions)
+    .get('https://guidr2.herokuapp.com/adventures', requestOptions)
     .then(response => {
       res.status(200).json(response.data.results);
     })

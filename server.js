@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 const express = require('express');
 const configureMiddleware = require('./config/middleware');
 const dbUser = require('./helpers/userModel');
