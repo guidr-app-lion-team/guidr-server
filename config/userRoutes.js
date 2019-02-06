@@ -9,8 +9,7 @@ module.exports = server => {
   server.post('/user', addUser);
   server.delete('/user/:id', deleteUser);
   server.put('/user/:id', updateUser);
-  server.get('/user/:id/adventures', getAdventuresOfUser);
-  //server.put('./user/:id/adventures/:id', updateAdventuresOfUser);
+  server.get('/user/:id/adventures', getAdventuresOfUser);  
 };
 
 // User routes
@@ -91,17 +90,3 @@ const getAdventuresOfUser = (req, res) => {
     });
 }
 
-// const updateAdventuresOfUser = (req, res) => {
-//   const { id } = req.params;
-//   dbUser.getAdventuresOfUser(id)
-//     .then(posts => {
-//       res.status(200).json(posts);
-//     })
-//   .update(req.params.id, req.body)
-//   .then(count => {
-//     res.status(200).json(count);
-//   })
-//   .catch(err => {
-//     res.status(500).json({ message: `Internal server error. Could not update adventures of user`, error: err });
-//   })
-// }
