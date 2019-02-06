@@ -52,11 +52,6 @@ const deleteAdventure = async (req, res) => {
 }
 
 const addNewAdventure = (req, res) => {
-  if (req.body.user_id === undefined || req.body.adventure_type === undefined || req.body.location === undefined) {
-    res.status(400).json({ message: "Adventure type and location are for the adventure are required." });
-    return;
-  }
-
   dbAdventures.insert(req.body)
     .then(data => {
       res.status(200).json(data);
