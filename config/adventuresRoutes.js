@@ -24,12 +24,12 @@ const getAllAdventures = (req, res) => {
 const getAdventureById = (req, res) => {
   dbAdventures.get(req.params.id)
     .then(post => {
-      console.log(post)
-      if (post.length !== 0) {
+      // console.log(post)
+      // if (post.length !== 0) {
         res.status(200).json(post);
-      } else {
-        res.status(404).json({ message: `Failed to get Adventure with specific ID: ${req.params.id} does not exist` });
-      }
+      // } else {
+      //   res.status(404).json({ message: `Failed to get Adventure with specific ID: ${req.params.id} does not exist` });
+      // }
     })
     .catch(err => {
       res.status(500).json({ message: `The Adventure with id: ${req.params.id} could not be retrieved.`, error: err });
