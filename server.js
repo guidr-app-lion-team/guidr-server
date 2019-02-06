@@ -4,7 +4,7 @@ const configureMiddleware = require('./config/middleware');
 const configureUserRoutes = require('./config/userRoutes');
 const configureAdventuresRoutes = require('./config/adventuresRoutes');
 
- const configureRoutes = require('./config/routes');
+const configureRoutes = require('./config/routes');
 
 
 const server = express();

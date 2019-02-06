@@ -9,11 +9,11 @@ module.exports = {
       return query
         .where('id', id)
         .first()
-        .then(adventure => mappers.adventuresToBody(adventure)); // s
+        .then(adventure => mappers.adventureToBody(adventure)); // s
     }
 
     return query.then(adventures => {
-      return adventures.map(adventure => mappers.adventuresToBody(adventure)); //s
+      return adventures.map(adventure => mappers.adventureToBody(adventure)); //s
     });
   },
   insert: function (adventure) {
