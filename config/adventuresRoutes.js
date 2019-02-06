@@ -52,7 +52,7 @@ const deleteAdventure = async (req, res) => {
 }
 
 const addNewAdventure = (req, res) => {
-  if (req.body.project_id === undefined || req.body.adventure_type === undefined || req.body.location === undefined) {
+  if (req.body.user_id === undefined || req.body.adventure_type === undefined || req.body.location === undefined) {
     res.status(400).json({ message: "Adventure type and location are for the adventure are required." });
     return;
   }
