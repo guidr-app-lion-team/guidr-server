@@ -26,17 +26,7 @@ const getAllUsers = (req, res) => {
 const getUser = (req, res) => {
   dbUser.get(req.params.id)
     .then(data => {
-      const userObject = {
-        id: data.id,
-        username: data.username,
-        name: data.name,
-        email: data.email,
-        location: data.location,
-        bio: data.bio,
-        professional: data.professional,
-        adventures: data.adventures,
-      }
-      res.status(200).json(userObject);
+      res.status(200).json(data);
     })
     .catch(err => {
       res.status(500).json({ message: `Failed to get User`, error: err });
