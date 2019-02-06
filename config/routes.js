@@ -1,8 +1,9 @@
+const dbAdventures = require('../helpers/adventureModel');
 // require('dotenv').config();
 // // const axios = require('axios');
 // // const bcrypt = require('bcryptjs');
-const db = require('./dbConfig');
-// // const jwt = require('jsonwebtoken');
+// const db = require('./dbConfig');
+// const jwt = require('jsonwebtoken');
 // // const hashPassword = require('../helpers/hashPassword');
 
 
@@ -49,20 +50,21 @@ module.exports = server => {
 // // }
 
 
-function login(req, res) {
+ const login = (req, res) => {
   // implement user login
-  const creds = req.params.id;
-
-  db('users')
-    .where({ username: creds.username })
-    .first()
-    .then(user => {      
-      res.status(200).json({ username: `${creds}` });
-           
-    })
-    .catch (err => res.status(500).json(err));
-}
-
+    const creds = req.body;
+   if (creds.password === user.password) {
+     res.status(400).json({ message: "You Shall not pass" });
+     return;
+   }
+   dbAdventures.get()
+     .then(posts => {
+       res.status(200).json(posts);
+     })
+     .catch(err => {
+       res.status(500).json({ message: 'Failed to get Adventures.', error: err });
+     });
+ }
 
 
 // function login(req, res) {
