@@ -27,14 +27,14 @@ const getUser = (req, res) => {
   dbUser.get(req.params.id)
     .then(data => {
       const userObject = {
-        // id: data.id,
+        id: data.id,
         username: data.username,
         name: data.name,
         email: data.email,
         location: data.location,
         bio: data.bio,
         professional: data.professional,
-        adventures: data.adventures,
+        // adventures: data.adventures,
       }
       res.status(200).json(userObject);
     })
