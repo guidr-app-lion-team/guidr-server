@@ -15,9 +15,9 @@ configureUserRoutes(server);
 configureAdventuresRoutes(server);
 
 // configureRoutes(server);
-// server.get('/', (req, res) => {
-//   res.send('God saw all that He had made, and found it very good')
-// });
+server.get('/', (req, res) => {
+  res.send('God saw all that He had made, and found it very good')
+});
 
 
 module.exports = server 

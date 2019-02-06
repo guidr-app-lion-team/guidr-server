@@ -27,7 +27,7 @@ const getUser = (req, res) => {
   dbUser.get(req.params.id)
     .then(data => {
       const userObject = {
-        id: data.id,
+        // id: data.id,
         username: data.username,
         name: data.name,
         email: data.email,
