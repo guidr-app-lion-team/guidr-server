@@ -34,7 +34,7 @@ const getUser = (req, res) => {
         location: data.location,
         bio: data.bio,
         professional: data.professional,
-        // adventures: data.adventures,
+        adventures: data.adventures,
       }
       res.status(200).json(userObject);
     })
