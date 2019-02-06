@@ -92,7 +92,12 @@ const getAdventuresOfUser = (req, res) => {
 }
 
 // const updateAdventuresOfUser = (req, res) => {
-//   dbUser.update(req.params.id, req.body).getAdventuresOfUser(id)
+//   const { id } = req.params;
+//   dbUser.getAdventuresOfUser(id)
+//     .then(posts => {
+//       res.status(200).json(posts);
+//     })
+//   .update(req.params.id, req.body)
 //   .then(count => {
 //     res.status(200).json(count);
 //   })
