@@ -2,7 +2,7 @@ module.exports = {
   intToBoolean,
   booleanToint,
   userToBody,
-  adventureToBody, // s 
+  adventuresToBody, // s 
 };
 
 function intToBoolean(int) {
@@ -29,7 +29,7 @@ function userToBody(user) {
   return result;
 }
 
-function adventureToBody(adventure) { //s
+function adventuresToBody(adventure) { //s
   return {
     ...adventure,
     professional: intToBoolean(adventure.professional),
