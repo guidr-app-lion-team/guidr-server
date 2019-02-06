@@ -1,4 +1,4 @@
-const dbAdventures = require('./helpers/adventureModel');
+const dbAdventures = require('../helpers/userModel');
 
 module.exports = server => {
   // Adventures end points

@@ -1,4 +1,4 @@
-const dbUser = require('./helpers/userModel');
+const dbUser = require('../helpers/userModel');
 
 
 module.exports = server => {
@@ -12,9 +12,6 @@ module.exports = server => {
 };
 
 // User routes
-server.get('/', (req, res) => {
-  res.send('God saw all that He had made, and found it very good')
-});
 
 const getAllUsers = (req, res) => {
   dbUser.get()
@@ -29,7 +26,17 @@ const getAllUsers = (req, res) => {
 const getUser = (req, res) => {
   dbUser.get(req.params.id)
     .then(data => {
-      res.status(200).json(data);
+      const userObject = {
+        id: data.id,
+        username: data.username,
+        name: data.name,
+        email: data.email,
+        location: data.location,
+        bio: data.bio,
+        professional: data.professional,
+        adventures: data.adventures,
+      }
+      res.status(200).json(userObject);
     })
     .catch(err => {
       res.status(500).json({ message: `Failed to get User`, error: err });
