@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/guidr-app-lion-team/guidr-server.git"
@@ -19,7 +22,9 @@
   },
   "homepage": "https://github.com/guidr-app-lion-team/guidr-server#readme",
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.9",
+    "supertest": "^3.4.2"
   },
   "dependencies": {
     "axios": "^0.18.0",
