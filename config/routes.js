@@ -9,6 +9,7 @@ const hashPassword = require('../helpers/hashPassword');
 
 const { authenticate } = require('../auth/authenticate');
 
+
 module.exports = server => {
   server.post('/register', register);
   server.post('/login', login);
@@ -61,7 +62,7 @@ function login(req, res) {
         // create the token
         const token = generateToken(user);
 
-        res.status(200).json({ username: `${creds.username}`, token });
+        res.status(200).json({ message: `${user.username}`, token });
       } else {
         res.status(401).json({ you: 'shall not pass!!' });
       }
