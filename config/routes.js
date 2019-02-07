@@ -7,7 +7,7 @@ const hashPassword = require('../helpers/hashPassword');
 
 
 
-// const { authenticate } = require('../auth/authenticate');
+const { authenticate } = require('../auth/authenticate');
 
 module.exports = server => {
   server.post('/register', register);
