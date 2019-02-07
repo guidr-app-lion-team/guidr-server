@@ -13,7 +13,8 @@ const { authenticate } = require('../auth/authenticate');
 module.exports = server => {
   server.post('/register', register);
   server.post('/login', login);
-  server.get('/adventures', authenticate, getGuidr);  
+  server.get('/adventures', authenticate);
+  // server.get('/adventures', authenticate, getGuidr);  
 };
 
 
@@ -70,17 +71,17 @@ function login(req, res) {
     .catch(err => res.status(500).json(err));
 }
 
-function getGuidr(req, res) {
-  const requestOptions = {
-    headers: { accept: 'application/json' },
-  };
+// function getGuidr(req, res) {
+//   const requestOptions = {
+//     headers: { accept: 'application/json' },
+//   };
 
-  axios
-    .get('https://guidr2.herokuapp.com/adventures', requestOptions)
-    .then(response => {
-      res.status(200).json(response.data.results);
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Error Fetching User', error: err });
-    });
-}
+//   axios
+//     .get('https://guidr2.herokuapp.com/adventures', requestOptions)
+//     .then(response => {
+//       res.status(200).json(response.data.results);
+//     })
+//     .catch(err => {
+//       res.status(500).json({ message: 'Error Fetching User', error: err });
+//     });
+// }
