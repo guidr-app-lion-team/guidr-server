@@ -1,85 +1,85 @@
-// require('dotenv').config();
-// // const axios = require('axios');
-// // const bcrypt = require('bcryptjs');
-// // const db = require('./dbConfig');
-// // const jwt = require('jsonwebtoken');
-// // const hashPassword = require('../helpers/hashPassword');
+require('dotenv').config();
+const axios = require('axios');
+const bcrypt = require('bcryptjs');
+const db = require('./dbConfig');
+const jwt = require('jsonwebtoken');
+const hashPassword = require('../helpers/hashPassword');
 
 
 
-// // const { authenticate } = require('../auth/authenticate');
+// const { authenticate } = require('../auth/authenticate');
 
-// module.exports = server => {
-//   server.post('/register', register);
-//   server.post('/login', login);
-//   // server.get('/adventures', authenticate, getGuidr);  
-// };
-
-
+module.exports = server => {
+  server.post('/register', register);
+  server.post('/login', login);
+  server.get('/adventures', authenticate, getGuidr);  
+};
 
 
-// function register(req, res) {
-//   // implement user registration
-//   const userInfo = req.body;
 
-//   // const hash = hashPassword(userInfo.password);
 
-//   // userInfo.password = hash;
+function register(req, res) {
+  // implement user registration
+  const userInfo = req.body;
 
-//   db('users')
-//     .insert(userInfo)
-//     .then(ids => {
-//       res.status(201).json(ids);
-//     })
-//     .catch(err => res.status(500).json(err));
-// }
+  const hash = hashPassword(userInfo.password);
 
-// // function generateToken(user) {
-// //   const payload = {
-// //     username: user.username,
-// //   };
+  userInfo.password = hash;
 
-// //   const secret = process.env.JWT_SECRET;
+  db('users')
+    .insert(userInfo)
+    .then(ids => {
+      res.status(201).json(ids);
+    })
+    .catch(err => res.status(500).json(err));
+}
 
-// //   const options = {
-// //     expiresIn: '45m',
-// //   };
+function generateToken(user) {
+  const payload = {
+    username: user.username,
+  };
 
-// //   return jwt.sign(payload, secret, options);
-// // }
+  const secret = process.env.JWT_SECRET;
 
-// function login(req, res) {
-//   // implement user login
-//   const creds = req.body;
+  const options = {
+    expiresIn: '45m',
+  };
 
-//   db('users')
-//     .where({ username: creds.username })
-//     .first()
-//     .then(user => {
-//       // if (user && bcrypt.compareSync(creds.password, user.password)) {
-//         // login is successful
-//         // create the token
-//         // const token = generateToken(user);
+  return jwt.sign(payload, secret, options);
+}
 
-//         res.status(200).json({ username: `${creds.username}`, token });
-//       } else {
-//         res.status(401).json({ you: 'shall not pass!!' });
-//       }
-//     })
-//     .catch(err => res.status(500).json(err));
-// }
+function login(req, res) {
+  // implement user login
+  const creds = req.body;
 
-// function getGuidr(req, res) {
-//   const requestOptions = {
-//     headers: { accept: 'application/json' },
-//   };
+  db('users')
+    .where({ username: creds.username })
+    .first()
+    .then(user => {
+      if (user && bcrypt.compareSync(creds.password, user.password)) {
+        // login is successful
+        // create the token
+        const token = generateToken(user);
 
-//   axios
-//     .get('https://guidr2.herokuapp.com/adventures', requestOptions)
-//     .then(response => {
-//       res.status(200).json(response.data.results);
-//     })
-//     .catch(err => {
-//       res.status(500).json({ message: 'Error Fetching User', error: err });
-//     });
-// }
+        res.status(200).json({ username: `${creds.username}`, token });
+      } else {
+        res.status(401).json({ you: 'shall not pass!!' });
+      }
+    })
+    .catch(err => res.status(500).json(err));
+}
+
+function getGuidr(req, res) {
+  const requestOptions = {
+    headers: { accept: 'application/json' },
+  };
+
+  axios
+    .get('https://guidr2.herokuapp.com/adventures', requestOptions)
+    .then(response => {
+      res.status(200).json(response.data.results);
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Error Fetching User', error: err });
+    });
+}
