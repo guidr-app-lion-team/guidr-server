@@ -1,83 +1,176 @@
 # Guidr App
 
-![Guidr App](https://i.imgur.com/479OBJ5.png)
+![](./readme_dbStructure.png)
 
 ## By The Guidr Team
+
 - UI team: Steven Jefferson, James Goodnight, Itel Domingo
 - Lead Frontend Developer: Matt Basile
 - Lead Backend Developer: Asa Shalom
 - Scrum Master: Timothy Hoang
 
-## To view this app online
+## To utilize this app
 
 - To view deployed app, visit: [Guidr Home](https://guidr2.netlify.com/)
-- Info at the end to edit the source code
+- To hit endpoints of the app, target: [Guidr Heroku](https://guidr2.herokuapp.com)
+- To get to the github repo of the app, target: [Github Server Repo](https://github.com/guidr-app-lion-team/guidr-server)
 
 ## About
 
 - [Guidr](https://guidr2.netlify.com/) is an app that helps backcountry guides of all types log their private/professional trips.
-- Sign up for an account, add adventure, see a guide's profile
-- Currently: Stable Version v1.0 -- updates are possible, not currently planned (as of 2/7/2019)
+- Sign up for an account, add adventures, see different profile
+- Currently: Stable Version v1.0 -- updates are possible, not currently planned (as of 2/8/2019)
 
 ## Features
 
-- A powerful front-end platform built with React, Redux, React Router, Greensock, and Tailwind CSS
-- Sign up and log into your own account
-- Ability to add full name, location, and bio to a user's account
-- Add/update/delete adventures
-- Check out adventures in the Newsfeed
-- Check out user's profiles
+- A powerful back-end platform built with Node, Express, SQLite3, Knex, Axios, JSON Web Tokens, and Bcryptjs
+- Ability to hit target endpoints to get specific data from MySQL server with adventures and user tables
 
-### As a guest
+## Technologies for this project
 
-1. Register an account as normal
-2. Log into the Mongo database and grant admin permissions with `db.<your user database>.update({ username: "<username>" }, { $set: { isAdmin: true }})` if using command line or log into [mLAB](https://mlab.com/) and edit directly
-3. Now admins should have all special abilities and user abilities
-4. Feel free to add new cities and administrate
+- [Node](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [SQLite3](https://www.sqlite.org/index.html)
+- [Axios](https://www.npmjs.com/package/axios)
+- [Knex](https://knexjs.org/)
+- [Bcryptjs](https://www.npmjs.com/package/bcryptjs)
+- [CORS](https://www.npmjs.com/package/cors)
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+- [Morgan](https://www.npmjs.com/package/morgan)
+- [Helmet](https://www.npmjs.com/package/morgan)
 
-### As a user
+## API Endpoints
 
-1. Register a new account
-2. Set up your profile by clicking your name on the top right
-3. Don't forget to fill out your profile by click on the your name at the top right
-4. Check out the available cities or request a new one from the admins via the contact form on home page
-5. Post a new story under a city
-6. Post comments on other stories
-7. Enjoy learning about new places and making friends
-8. Character limits are as follows: 1000 character limit for story body, 500 for user bio, 280 for user comments
+- **Admin Routes**
+- POST `https://guidr2.herokuapp.com/register` = Registers a user
 
-## Front End Technologies for this project
+- POST `https://guidr2.herokuapp.com/login` = Logs in a user
+- requires user object with
+```js
+`username` (string),
+`password` (string),
+```
 
-- [React](https://reactjs.org/)
-- [React Router](https://github.com/ReactTraining/react-router)
-- [Redux](https://redux.js.org/)
-- [Greensock](https://www.npmjs.com/package/gsap)
-- [Web Font Loader](https://www.npmjs.com/package/webfontloader)
+- GET `https://guidr2.herokuapp.com/adventures` = Authenticates a user
+- not in use
 
-## Back End Technologies for this project
-- [Nodejs](https://nodejs.org/en/)
-- [Express - Nodejs](https://expressjs.com/)
-- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-- [knex.js](https://knexjs.org/)
-- [morgan](https://www.npmjs.com/package/morgan/v/1.1.1)
-- [helmet](https://helmetjs.github.io/)
-- [sqlite3](https://www.npmjs.com/package/sqlite3)
+- **Adventure Routes**
 
-## Possible Updates
+- POST `https://guidr2.herokuapp.com/adventures` = Adds a new adventure
+- submit an object with the shape of:
+```js
+`id` (number),
+`user_id` (number),
+`adventure_type` (string),
+`title` (string),
+`location` (string),
+`duration` (string),
+`description` (string),
+`professional` (boolean),
+`date` (string),
+```
 
-1. CRUD operations for users
-2. Ability to upload photos
+- GET `https://guidr2.herokuapp.com/adventures` = Gets all the adventures
+- returns an ARRAY of objects with shape of:
+```js
+`id` (number),
+`user_id` (number),
+`adventure_type` (string),
+`title` (string),
+`location` (string),
+`duration` (string),
+`description` (string),
+`professional` (boolean),
+`date` (string),
+```
+
+- GET `https://guidr2.herokuapp.com/adventures/:id` = Gets specific adventure by ID
+- returns an object with shape of:
+```js
+`id` (number),
+`user_id` (number),
+`adventure_type` (string),
+`title` (string),
+`location` (string),
+`duration` (string),
+`description` (string),
+`professional` (boolean),
+`date` (string),
+```
+
+- PUT `https://guidr2.herokuapp.com/adventures/:id` = Updates a specific adventure by ID
+
+- DELETE `https://guidr2.herokuapp.com/adventures/:id` = Deletes specific adventure by ID
+
+- **User Routes**
+
+- POST `https://guidr2.herokuapp.com/user` = Adds a new user
+
+- GET `https://guidr2.herokuapp.com/user` = Gets all the users
+- returns an ARRAY of objects with shape of:
+```js
+`id` (string),
+`username` (string),
+`name` (string),
+`email` (string),
+`location` (string),
+`bio` (string),
+`professional` (boolean)
+```
+
+- GET `https://guidr2.herokuapp.com/user/:id` = Gets specific user by ID
+- returns specific user object with shape of:
+```js
+`id` (string),
+`username` (string),
+`name` (string),
+`email` (string),
+`location` (string),
+`bio` (string),
+`professional` (boolean)
+```
+
+- GET `https://guidr2.herokuapp.com/user/:id/adventures` = Gets all adventures from specific user by ID
+- returns an ARRAY of objects with shape of:
+```js
+`id` (number),
+`user_id` (number),
+`adventure_type` (string),
+`title` (string),
+`location` (string),
+`duration` (string),
+`description` (string),
+`professional` (boolean),
+`date` (string),
+```
+
+- PUT `https://guidr2.herokuapp.com/user/:id` = Updates a specific user by ID
+
+- DELETE `https://guidr2.herokuapp.com/user/:id` = Deletes specific user by ID
 
 ## To edit the source code
 
-- Github Repo: [Guidr Client Repo](https://github.com/guidr-app-lion-team/guidr-client-deploy)
+- Github Repo: [Guidr Server Repo](https://github.com/guidr-app-lion-team/guidr-server)
 1. Have stable NPM and NodeJS versions installed on your computer
-2. Navigate to the directory of choice and type `git clone https://github.com/guidr-app-lion-team/guidr-client-deploy.git`
+2. Navigate to the directory of choice and type `git clone https://github.com/guidr-app-lion-team/guidr-server.git`
 3. Install necessary packages either with `npm install` or `yarn`
-4. Run the client with `npm start` or `yarn start`, then navigate to `http://localhost:3000/` to see the client
-5. Open up the package with your favorite editor and hack away!
+4. Run the client with `npm start` or `yarn start`, then navigate to `http://localhost:5000/` to see the client
+5. Open up the codebase with your favorite editor and hack away!
 
 ## More pictures
 
-### Login Page for App
-![Guidr App](https://i.imgur.com/479OBJ5.png)
+### Database Structure
+
+![](./readme_dbStructure.png)
+
+### Adventures Data
+
+![](./readme_adventuresData.png)
+
+### Adventure Object
+
+![](./readme_adventuresObject.png)
+
+### Users Data
+
+![](./readme_usersData.png)
