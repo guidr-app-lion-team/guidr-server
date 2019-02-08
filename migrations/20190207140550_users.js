@@ -1,5 +1,5 @@
 
-exports.up = function(knex, Promise) {
+exports.up = function (knex, Promise) {
   return knex.schema.createTable('users', tbl => {
     //Primary key
     tbl
@@ -21,10 +21,10 @@ exports.up = function(knex, Promise) {
     tbl
       .text('bio');
     tbl
-      .boolean('professional').defaultTo(false); 
+      .boolean('professional').defaultTo(false);
   });
 };
 
-exports.down = function(knex, Promise) {
+exports.down = function (knex, Promise) {
   return knex.schema.dropTableIfExists('users');
 };

@@ -25,7 +25,7 @@ module.exports = {
   getUserAdventures: function (userId) {
     return db('adventures')
       .where('user_id', userId)
-      .then(adventures => adventures.map(adventure => mappers.adventuresToBody(adventure)));
+      .then(adventures => adventures.map(adventure => mappers.adventureToBody(adventure))); //s
   },
   insert: function (user) {
     return db('users')
